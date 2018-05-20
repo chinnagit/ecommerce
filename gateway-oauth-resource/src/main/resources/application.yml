@@ -1,0 +1,42 @@
+server:  
+  port: ${PORT:8082}
+  context-path: /gateway-oauth-resource
+
+spring:  
+  application:
+    name: gateway-oauth-resource
+  logging:
+    pattern:
+      console: "%clr(%d{yyyy-MM-dd HH:mm:ss}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]){yellow} %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+    level:
+      org.springframework: WARN
+      org.hibernate: WARN
+      
+    sleuth:
+    sampler:
+      percentage: 1.0
+    web:
+      skipPattern: (^cleanup.*)
+   
+      
+zuul:
+#  prefix: /api
+  routes:
+    user: 
+      path: /userservice/**
+      sensitiveHeaders:
+      serviceId: user-service
+    product: 
+      path: /productservice/**
+      sensitiveHeaders:
+      serviceId: products-service  
+      
+ribbon:
+  eureka:
+    enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: false
