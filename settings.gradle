@@ -1,0 +1,18 @@
+rootProject.name = 'ecommerce'
+include ':discovery-eureka-service'
+include ':products-service'
+include ':cart-service'
+include ':payment-service'
+include ':user-service'
+include ':gateway-oauth-resource'
+include ':security-oauth-server'
+include ':zipkin-service'
+
+project(':discovery-eureka-service').projectDir = "$rootDir/discovery-eureka-service" as File
+project(':products-service').projectDir = "$rootDir/products-service" as File
+project(':cart-service').projectDir = "$rootDir/cart-service" as File
+project(':payment-service').projectDir = "$rootDir/payment-service" as File
+project(':user-service').projectDir = "$rootDir/user-service" as File
+project(':gateway-oauth-resource').projectDir = "$rootDir/gateway-oauth-resource" as File
+project(':security-oauth-server').projectDir = "$rootDir/security-oauth-server" as File
+project(':zipkin-service').projectDir = "$rootDir/zipkin-service" as File
