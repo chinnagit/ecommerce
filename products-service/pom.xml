@@ -11,7 +11,9 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.finalName>products-service</project.build.finalName>
+    	<docker.version>1.3.6</docker.version>
 	</properties>
 
 	<dependencies>
@@ -73,6 +75,27 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+			  <groupId>com.spotify</groupId>
+			  <artifactId>dockerfile-maven-plugin</artifactId>
+			  <version>${docker.version}</version>
+			  <executions>
+			    <execution>
+			      <id>default</id>
+			      <goals>
+			        <goal>build</goal>
+			        <!--goal>build</goal-->
+			      </goals>
+			    </execution>
+			  </executions>
+			  <configuration>
+			    <repository>productsservice</repository>
+			    <tag>${version}</tag>
+			    <buildArgs>
+			      <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+			    </buildArgs>
+			  </configuration>
 			</plugin>
 		</plugins>
 	</build>

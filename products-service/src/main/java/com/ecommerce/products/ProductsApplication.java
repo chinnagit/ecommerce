@@ -9,6 +9,9 @@ import org.springframework.cloud.sleuth.metric.SpanMetricReporter;
 import org.springframework.cloud.sleuth.zipkin.HttpZipkinSpanReporter;
 import org.springframework.cloud.sleuth.zipkin.ZipkinProperties;
 import org.springframework.cloud.sleuth.zipkin.ZipkinSpanReporter;
+//import org.springframework.cloud.sleuth.zipkin.HttpZipkinSpanReporter;
+//import org.springframework.cloud.sleuth.zipkin.ZipkinProperties;
+//import org.springframework.cloud.sleuth.zipkin.ZipkinSpanReporter;
 import org.springframework.context.annotation.Bean;
 
 import com.netflix.appinfo.InstanceInfo;

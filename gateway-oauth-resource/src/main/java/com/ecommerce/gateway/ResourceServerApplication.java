@@ -28,11 +28,12 @@ public class ResourceServerApplication extends SpringBootServletInitializer {
 	@Autowired
 	private EurekaClient eurekaClient;
 
-	@Autowired
-	private SpanMetricReporter spanMetricReporter;
-
-	@Autowired
-	private ZipkinProperties zipkinProperties;
+//	@Autowired
+//	private SpanMetricReporter spanMetricReporter;
+//
+//	@Autowired
+//	private ZipkinProperties zipkinProperties;
+	
 //TODO need to verify why is not working, but works in products and userr service
 //	@Value("${spring.sleuth.web.skipPattern}")
 //	private String skipPattern;
@@ -41,29 +42,29 @@ public class ResourceServerApplication extends SpringBootServletInitializer {
         SpringApplication.run(ResourceServerApplication.class, args);
     }
     
-    @Bean
-	public ZipkinSpanReporter makeZipkinSpanReporter() {
-	    return new ZipkinSpanReporter() {
-	        private HttpZipkinSpanReporter delegate;
-	        private String baseUrl;
-	 
-	        @Override
-	        public void report(Span span) {
-	  
-	            InstanceInfo instance = eurekaClient
-	              .getNextServerFromEureka("zipkin-service", false);
-	            if (!(baseUrl != null && 
-	              instance.getHomePageUrl().equals(baseUrl))) {
-	                baseUrl = instance.getHomePageUrl();
-	                delegate = new HttpZipkinSpanReporter(baseUrl,
-	                  zipkinProperties.getFlushInterval(), 
-	                  zipkinProperties.getCompression().isEnabled(), 
-	                  spanMetricReporter);
-	  
-//	                if (!span.name.matches(skipPattern)) delegate.report(span);
-	            }
-	        }
-	    };
-	}
+//    @Bean
+//	public ZipkinSpanReporter makeZipkinSpanReporter() {
+//	    return new ZipkinSpanReporter() {
+//	        private HttpZipkinSpanReporter delegate;
+//	        private String baseUrl;
+//	 
+//	        @Override
+//	        public void report(Span span) {
+//	  
+//	            InstanceInfo instance = eurekaClient
+//	              .getNextServerFromEureka("zipkin-service", false);
+//	            if (!(baseUrl != null && 
+//	              instance.getHomePageUrl().equals(baseUrl))) {
+//	                baseUrl = instance.getHomePageUrl();
+//	                delegate = new HttpZipkinSpanReporter(baseUrl,
+//	                  zipkinProperties.getFlushInterval(), 
+//	                  zipkinProperties.getCompression().isEnabled(), 
+//	                  spanMetricReporter);
+//	  
+////	                if (!span.name.matches(skipPattern)) delegate.report(span);
+//	            }
+//	        }
+//	    };
+//	}
 
 }

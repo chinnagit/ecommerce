@@ -10,9 +10,10 @@ spring:
     level:
       org.springframework: WARN
       org.hibernate: WARN
-  client:
-    serviceUrl:
-      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+  #client:
+   # serviceUrl:
+      #defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+    #  defaultZone: http://localhost:8761/eureka/
   instance:
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2  
@@ -35,7 +36,8 @@ security:
 eureka:  
   client:
     serviceUrl:
-      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+      #defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+      defaultZone: http://localhost:8761/eureka/
   instance:
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2

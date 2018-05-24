@@ -102,7 +102,7 @@ public class ProductsApi {
 	}
 	
 	@RequestMapping(value="/products/", method = RequestMethod.POST)
-	@CachePut(value = "allproducts")
+//	@CachePut(value = "allproducts")
 	public void updateProduct(@RequestBody Product product) {
 		System.out.println("updating product");
 		if(isMongoDb) {
@@ -120,6 +120,8 @@ public class ProductsApi {
 		logger.info("############################ Product.findAllCompanies() ###################################");
 		List<Users> users = new ArrayList<Users>();
 		try {
+			List<Product> prods = productRepo.findAll();
+			System.out.println("############################ productRepo.findAll() ################################### "+prods.size());
 			mongoOperations();
 			companies = companyRepo.findAll();
 		} catch (Exception e) {

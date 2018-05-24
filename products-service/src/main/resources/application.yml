@@ -18,7 +18,9 @@ spring:
 
 
   data:
-      mongodb.host: localhost
+      #change it localhost in case you are running locally and not in docker environment
+      #mongodb.host: localhost
+      mongodb.host: mongo
       mongodb.port: 27017
       mongodb.database: commerce
       
