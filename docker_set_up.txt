@@ -1,0 +1,131 @@
+get the code from https://github.com/chinnagit/ecommerce
+ 
+make sure docker is installed and running
+
+some how docker version of maven is not working to build the projects, so as a work around install java 8 and maven locally.
+
+from commerce folder run below maven command which builds the jars and deploys docker images
+mvn clean package -DskipTests
+
+after successful of above command you can check the images got deployed docker
+
+docker image ls
+
+ecommerce-client
+securityoauthserver
+ecommerce/apigateway 
+userservice   
+ecommerce/cartservice  
+productsservice        
+ecommerce/discovery 
+
+and then run 
+
+docker-compose up
+
+and you can observe all containers got deployed
+
+docker container ls
+
+verification of deployment
+
+Check other micro services (product, user e.t.c) eureka server — http://localhost:8761/
+
+Zulu verification:
+
+products service should be accessed through api gate way
+http://localhost:8082/gateway-oauth-resource/productservice/products
+
+similarly user service
+
+http://localhost:8082/gateway-oauth-resource/userservice/user
+
+
+User API verification
+
+http://localhost:3222/user
+
+product api verification
+
+http://localhost:2222/products
+
+
+
+
+I.  dev setup.
+
+1. install java 8, and maven 
+
+2. Creating docker images as part of the build refer https://github.com/spotify/dockerfile-maven
+
+3. create the docker file for each micro service and databases (mysql and mogodb)
+
+https://severalnines.com/blog/mysql-docker-containers-understanding-basics
+
+4. create the docker compose file
+
+to create the mysql service and attach to your micro service refer, blog #7 
+
+https://stackoverflow.com/questions/25920029/setting-up-mysql-and-importing-dump-within-dockerfile
+
+5. to stop and remove all docker containers
+
+docker stop $(docker ps -a -q)
+
+docker rm $(docker ps -a -q)
+
+6. for mongo docker service set up refer 
+
+https://github.com/david-romero/spring-boot-mongo-docker
+
+7. for angular client
+refer 
+https://scotch.io/tutorials/create-a-mean-app-with-angular-2-and-docker-compose
+
+
+II. start all services
+
+docker-compose up
+
+
+it deploy and start all docker services viz mysql, mongo, eureka discovery service, zuul api gateway and authorization serve, authentication server for jwt token, products service, user service and angular based client application.   
+
+
+
+8. Docker troubleshoot https://forums.docker.com/t/notice-docker-is-not-responding-waiting-0-5s/9704
+
+Steps to correct the behavior
+Quit docker for mac
+sudo ps aux | grep -i docker.
+Then sudo kill <pid> or sudo kill -9 <pid> for the results from the previous command
+Start docker for mac
+
+
+
+
+
+
+
+docker run -it --rm -v "$PWD":/app -w /app demo/maven:3.3-jdk-8 mvn clean package
+
+docker run -p 8761:8761 -t ecommerce/discovery:1.0-SNAPSHOT
+
+docker run -p 9081:9081 -t ecommerce/authserver:1.0-SNAPSHOT
+
+docker run -p 8082:8082 -t ecommerce/apigateway:1.0-SNAPSHOT 
+
+docker run -p 8082:8082 -t —-name ecommerce/apigateway:1.0-SNAPSHOT —link ecommerce/discovery:1.0-SNAPSHOT 
+
+docker run -t --name ecommerce/apigateway:1.0-SNAPSHOT --link docker-ecommerce/discovery:1.0-SNAPSHOT -p 8082:8082 ecommerce/apigateway:1.0-SNAPSHOT 
+
+
+## Starts up an eureka image, names it eureka-server and exposes port 8761 
+docker run -p 8761:8761 --name eureka-server -t ecommerce/discovery:1.0-SNAPSHOT 
+ 
+
+
+
+
+
+docker container ls
+

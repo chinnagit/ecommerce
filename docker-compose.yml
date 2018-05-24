@@ -1,0 +1,139 @@
+version: '2'
+services:
+  mongo:
+    image: mongo:3.2.4
+    container_name: mongo
+    ports:
+    - 27017:27017
+    command: --smallfiles
+    
+  mongo-init:
+    build: ./mongo-init
+    container_name: mongo-init
+    links:
+      - mongo
+      
+ #mongo-client:
+ #   image: mongoclient/mongoclient
+ #   container_name: mongo-client
+ #   ports:
+ #   - 3030:3000
+ #   environment:
+ #     - MONGOCLIENT_DEFAULT_CONNECTION_URL=mongodb://mongo:27017
+ #   links:
+ #     - mongo
+
+  docker-mysql:
+    build:
+      context: ./mysql
+      args:
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    container_name: docker-mysql
+    ports:
+       - "${MYSQL_PORT}:3306"
+  
+  redisdb:
+    image: "redis:alpine"
+    container_name: redisservice
+    hostname: redis
+    ports:
+     - "6379:6379"
+
+  eureka:
+    build:
+      context: ./discovery-eureka-service/
+    container_name: eureka
+    image: ecommerce/discovery:1.0-SNAPSHOT
+    #environment:
+    #  eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+    tty: false
+    ports:
+      - 8761:8761
+
+  zipkin:
+    build:
+      context: ./zipkin-service/
+    container_name: zipkin-service
+    image: zipkinservice:1.0-SNAPSHOT 
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+    tty: false
+    ports:
+      - 9411:9411
+  
+  zuul:
+    build:
+      context: ./gateway-oauth-resource/
+    container_name: zuul
+    image: ecommerce/apigateway:1.0-SNAPSHOT
+    depends_on:
+      - eureka
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+    tty: false
+    ports:
+      - 8082:8082
+  
+  securityoauthservice:
+    build:
+      context: ./security-oauth-server/
+    image: securityoauthserver:1.0-SNAPSHOT
+    container_name: security-oauth-server
+    depends_on:
+      - eureka
+    ports:
+      - 9081:9081
+    #links:
+    #  - "redisdb:redis"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/ 
+  
+  userservice:
+    build:
+      context: ./user-service/
+    image: userservice:1.0-SNAPSHOT
+    container_name: user-server
+    depends_on:
+      - eureka
+    ports:
+      - 3222:3222
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/ 
+  
+  productsservice:
+    image: productsservice:1.0-SNAPSHOT
+    container_name: products-service
+    depends_on:
+      - mongo
+      - eureka
+      #- redisdb
+    #links:
+    # - redisdb
+    ports:
+      - 2222:2222
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+ 
+  #cartservice:
+  #  image: ecommerce/cartservice:1.0-SNAPSHOT
+  #  container_name: cart-service
+  #  depends_on:
+  #    - docker-mysql
+  #    - eureka
+  #  ports:
+  #    - 5222:5222
+  #  environment:
+  #    - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+  #    - DATABASE_HOST=docker-mysql
+  #    - DATABASE_USER=${MYSQL_USER}
+  #    - DATABASE_PASSWORD=${MYSQL_PASSWORD}
+  #    - DATABASE_NAME=${MYSQL_DATABASE}
+  #    - DATABASE_PORT=3306
+  
+  ecommerceclient:
+    build: ./client/ecommerce-ui-jwt/
+    container_name: ecommerce-client
+    ports:
+      - 8085:8085

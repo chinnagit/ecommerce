@@ -1,0 +1,24 @@
+version: '2'
+services:
+  eureka:
+    build:
+      context: ./discovery-eureka-service/
+    container_name: eureka
+    image: ecommerce/discovery:1.0-SNAPSHOT
+    #environment:
+    #  eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+    tty: false
+    ports:
+      - 8761:8761
+
+  zipkin:
+    build:
+      context: ./zipkin-service/
+    container_name: zipkin-service
+    image: zipkinservice:1.0-SNAPSHOT
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+    tty: false
+    ports:
+      - 9411:9411
+  
