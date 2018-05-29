@@ -4,7 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+<<<<<<< HEAD
     "start": "ng serve -H 0.0.0.0 --port 8085",
+=======
+    "start": "ng serve --port 8085",
+>>>>>>> 167d3504d9e3187efd0a2ae6456b56836bafd8a0
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -26,7 +30,11 @@
     "ng2-cookies": ">=1.0.12"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@angular/cli": "1.7.2",
+=======
+    "@angular/cli": "1.0.1",
+>>>>>>> 167d3504d9e3187efd0a2ae6456b56836bafd8a0
     "@angular/compiler-cli": "^4.0.0",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",

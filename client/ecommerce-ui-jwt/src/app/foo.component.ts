@@ -35,8 +35,13 @@ export class FooComponent {
     constructor(private _service:AppService) {}
 	
 	getFoo(){
+<<<<<<< HEAD
 		//this.getFoo1();
 		this.getProducts();
+=======
+		this.getFoo1();
+		//this.getProducts();
+>>>>>>> 167d3504d9e3187efd0a2ae6456b56836bafd8a0
 		//this.getCustomers();
 		
 	}
