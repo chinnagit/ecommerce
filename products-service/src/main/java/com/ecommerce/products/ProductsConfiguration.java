@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("com.bala.ecommerce.products")
+@ComponentScan("com.ecommerce.products")
 public class ProductsConfiguration {
 
 	@Bean
