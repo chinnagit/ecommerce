@@ -1,0 +1,58 @@
+<div class="clr-row" >
+    <div class="clr-col-6">
+        <div *ngFor="let cart of cartItems">
+            <div class="clr-row" >
+                <div class="clr-col-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                {{cart.name}}
+                            </div>
+                            <div class="card-text">
+                                {{cart.description}}
+                                <br>
+                                Price: {{cart.price}}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clr-col-6">
+        <div class="clr-row" >
+            <div class="clr-col-12">
+                <div class="card">
+                    <div class="card-header">
+                        Order Summary
+                    </div>
+                    <div class="card-block">
+                        <div class="card-text">
+                            <div class="clr-row" >
+                                <div class="clr-col-12">
+                                    Subtotal: 2500$
+                                </div>
+                                <div class="clr-col-12">
+                                    Tax: 500$
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="clr-row" >
+                            <div class="clr-col-6">
+                                Order Total: 3000$
+                            </div>
+                            <div class="clr-col-6">
+                                <button type="button" (click)="addToCart()">Continue to Payment</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+
+<div *ngFor="let cart of cartItems">
+    <div class="clr-row" >
+        <div class="clr-col-4">
+            <div class="card">
+                <!--<div class="card-header">-->
+                <!--Header-->
+                <!--</div>-->
+                <div class="card-block">
+                    <div class="card-title">
+                        {{cart.name}}
+                    </div>
+                    <div class="card-text">
+                        {{cart.description}}
+                        <br>
+                        Price: {{cart.price}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="clr-row" >
+    <div class="clr-col-12">
+        <a class="btn btn-default pull-right" [routerLink]=" ['/main/checkout']">Checkout</a>
+    </div>
+</div>
