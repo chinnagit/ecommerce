@@ -19,8 +19,8 @@ spring:
 
   data:
       #change it localhost in case you are running locally and not in docker environment
-      #mongodb.host: localhost
-      mongodb.host: mongo
+      mongodb.host: localhost
+      #mongodb.host: mongo
       mongodb.port: 27017
       mongodb.database: commerce
       
@@ -48,6 +48,7 @@ security:
 
 eureka:  
   client:
+    enabled: true
     serviceUrl:
       defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
   instance:
