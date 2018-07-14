@@ -1,25 +1,28 @@
-mvn archetype:generate -DgroupId=com.bala.ecommerce -DartifactId=ecommerce
+mvn archetype:generate -DgroupId=com.ecommerce -DartifactId=ecommerce
 
-mvn archetype:generate -DgroupId=com.bala.ecommerce.products -DartifactId=products
+mvn archetype:generate -DgroupId=com.ecommerce.products -DartifactId=products
 	-DarchetypeArtifactId=ecommerce-products -DinteractiveMode=false
 
-mvn archetype:generate -DgroupId=com.bala.ecommerce.cart -DartifactId=cart
+mvn archetype:generate -DgroupId=com.ecommerce.cart -DartifactId=cart
 	-DarchetypeArtifactId=ecommerce-cart -DinteractiveMode=false
 
-mvn archetype:generate -DgroupId=com.bala.ecommerce.user -DartifactId=user
+mvn archetype:generate -DgroupId=com.ecommerce.user -DartifactId=user
 	-DarchetypeArtifactId=ecommerce-user -DinteractiveMode=false
 
-mvn archetype:generate -DgroupId=com.bala.ecommerce.payment -DartifactId=payment
+mvn archetype:generate -DgroupId=com.ecommerce.payment -DartifactId=payment
 	-DarchetypeArtifactId=ecommerce-payment -DinteractiveMode=false
 	
-mvn archetype:generate -DgroupId=com.bala.ecommerce.gateway -DartifactId=apigateway-zuul
+mvn archetype:generate -DgroupId=com.ecommerce.gateway -DartifactId=apigateway-zuul
 	-DarchetypeArtifactId=apigateway-zuul -DinteractiveMode=false
 	
-mvn archetype:generate -DgroupId=com.bala.ecommerce.discovery -DartifactId=discovery-eureka
+mvn archetype:generate -DgroupId=com.ecommerce.discovery -DartifactId=discovery-eureka
 	-DarchetypeArtifactId=discovery-eureka -DinteractiveMode=false 
 	
-mvn archetype:generate -DgroupId=com.bala.ecommerce.auth -DartifactId=auth
+mvn archetype:generate -DgroupId=com.ecommerce.auth -DartifactId=auth
 	-DarchetypeArtifactId=ecommerce-auth -DinteractiveMode=false	
+	
+mvn archetype:generate -DgroupId=com.ecommerce.java.client -DartifactId=javarestclient
+	-DarchetypeArtifactId=java-rest-client -DinteractiveMode=false
 	
 for hotswapping run time refer -- https://dzone.com/articles/hot-swap-java-bytecode-on-runtime
 
@@ -38,3 +41,41 @@ In gradle way
 7. gradle clean build -x test
 
 for each sub project open the separate command line and run -- gradle bootRun
+
+To run the product service make sure redis, mongodb, zipkin, eureka services are up
+
+8. run mongo db with custom path
+mongod --dbpath C:\mongo-data\training
+
+swagger.json file will be generated when you run, take this file to client project and generate typescript angular code (refer https://github.com/swagger-maven-plugin/swagger-maven-plugin for more help on swagger and maven plugin)
+
+mvn clean package -DskipTests 
+
+
+
+once you launch the application, you can see swagger information, refer https://springframework.guru/spring-boot-restful-api-documentation-with-swagger-2/ 
+
+http://localhost:2222/swagger-ui.html
+
+or 
+
+http://localhost:2222/v2/api-docs
+
+
+A. How to start application.
+
+start the services from different command prompts 
+
+1. start eureka discovery service.
+2. start authentication service.
+3. start gateway/authorization service.
+4. start product/catalog service.
+5. start client project from C:\tutorials\casestudy\ecommerce\client\ecommerce-ui-jwt 
+npm start.
+access the application using http://localhost:8085
+
+
+
+
+
+
