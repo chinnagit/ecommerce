@@ -3,9 +3,8 @@
  */
 package com.ecommerce.cart.repository;
 
-import org.springframework.data.repository.CrudRepository;
-
 import com.ecommerce.cart.entity.User;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * @author chinnb

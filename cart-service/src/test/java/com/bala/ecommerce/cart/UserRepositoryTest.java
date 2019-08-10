@@ -1,10 +1,9 @@
 package com.bala.ecommerce.cart;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.ecommerce.cart.Application;
+import com.ecommerce.cart.entity.User;
+import com.ecommerce.cart.repository.UserRepository;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +15,10 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
-import com.ecommerce.cart.Application;
-import com.ecommerce.cart.entity.User;
-import com.ecommerce.cart.repository.UserRepository;
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
 
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
 	  TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class})

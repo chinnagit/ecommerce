@@ -3,21 +3,19 @@
  */
 package com.ecommerce.cart.api;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Logger;
-
+import com.ecommerce.cart.entity.Cart;
+import com.ecommerce.cart.entity.User;
+import com.ecommerce.cart.repository.CartRepository;
+import com.ecommerce.cart.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ecommerce.cart.entity.Cart;
-import com.ecommerce.cart.entity.User;
-import com.ecommerce.cart.repository.CartRepository;
-import com.ecommerce.cart.repository.UserRepository;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 
 /**

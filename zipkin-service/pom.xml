@@ -67,7 +67,7 @@
 				</execution>
 			</executions>
 		</plugin>
-		<plugin>
+		<!--plugin>
 			  <groupId>com.spotify</groupId>
 			  <artifactId>dockerfile-maven-plugin</artifactId>
 			  <version>${docker.version}</version>
@@ -76,7 +76,6 @@
 			      <id>default</id>
 			      <goals>
 			        <goal>build</goal>
-			        <!--goal>build</goal-->
 			      </goals>
 			    </execution>
 			  </executions>
@@ -87,7 +86,7 @@
 			      <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
 			    </buildArgs>
 			  </configuration>
-			</plugin>
+			</plugin-->
 	</plugins>
   </build>
 </project>

@@ -31,6 +31,7 @@ public class EmployeeController {
     @PostMapping(value = "/employee", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void postMessage(@RequestBody Employee employee) {
+
         employees.add(employee);
     }
 

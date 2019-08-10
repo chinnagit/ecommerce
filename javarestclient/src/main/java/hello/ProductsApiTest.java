@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -29,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class ProductsApiTest {
 
+    protected Logger logger = Logger.getLogger(ProductsApiTest.class.getName());
     private enum RequestTypesEnum {
         // GET, POST;
         GET("GET"),

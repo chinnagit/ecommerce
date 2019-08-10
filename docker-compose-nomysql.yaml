@@ -23,16 +23,16 @@ services:
  #   links:
  #     - mongo
 
-  docker-mysql:
-    build:
-      context: ./mysql
-      args:
-        - MYSQL_DATABASE=${MYSQL_DATABASE}
-        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-    container_name: docker-mysql
-    ports:
-       - "${MYSQL_PORT}:3306"
+#  docker-mysql:
+#    build:
+#      context: ./mysql
+#      args:
+#        - MYSQL_DATABASE=${MYSQL_DATABASE}
+#        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+#        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+#    container_name: docker-mysql
+#    ports:
+#       - "${MYSQL_PORT}:3306"
   
   redisdb:
     image: "redis:alpine"
@@ -103,8 +103,6 @@ services:
       - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/ 
   
   productsservice:
-    build:
-      context: ./products-service/
     image: productsservice:1.0-SNAPSHOT
     container_name: products-service
     depends_on:

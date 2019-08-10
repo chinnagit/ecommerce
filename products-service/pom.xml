@@ -90,6 +90,21 @@
 		<finalName>products-service</finalName>
 		<plugins>
 			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.ecommerce.products.ProductsApplication</mainClass>
+					<addResources>true</addResources>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
                 <groupId>com.github.kongchen</groupId>
                 <artifactId>swagger-maven-plugin</artifactId>
                 <version>3.1.1</version>
@@ -172,9 +187,7 @@
 	                </execution>
 	            </executions>
 	        </plugin>
-		
-			
-			<!--plugin>
+		<!--plugin>
 			  <groupId>com.spotify</groupId>
 			  <artifactId>dockerfile-maven-plugin</artifactId>
 			  <version>${docker.version}</version>
@@ -194,7 +207,7 @@
 			    </buildArgs>
 			  </configuration>
 			</plugin-->
-		</plugins>
+	    </plugins>
 	</build>
 </project>
 
