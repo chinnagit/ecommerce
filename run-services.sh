@@ -9,7 +9,7 @@ fi
 
 install()
 {
-	mvn clean install
+	mvn clean install -DskipTests
 	cd client/ecommerce-ui-jwt
 	npm install
 	cd ../..
